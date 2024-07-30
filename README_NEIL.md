@@ -38,4 +38,23 @@ DBT_PROJECT_DIR = f"{AIRFLOW_HOME}/dags/insights/dbt/"
 # DBT_PROJECT_DIR = f"{AIRFLOW_HOME}/dags/dbt/"
 ```
 
+### Airflow variables, connections, and pools.
+You will need to set some of these up via your local Airflow.
+You can tell from error messages in the Dag imports
+or runs, or even possibly the logs in your terminal.
+
+Look at the insights-dashboard MWAA settings in AWS
+to get appropriate values
+
+Adding the below will get you most of the way:
+
+#### Variables
+- `AWS_DEFAULT_REGION`
+- `ENV`
+
+#### Connections
+- `redshift-serverless-qa`
+
+#### Pools
+- `redshift_2` (20 slots)
 
