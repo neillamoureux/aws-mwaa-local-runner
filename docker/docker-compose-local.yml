@@ -27,6 +27,9 @@ services:
                 max-file: "3"
         volumes:
             - "${PWD}/dags:/usr/local/airflow/dags"
+            - "${INSIGHTS_DAG_PATH}:/usr/local/airflow/dags/insights"
+            - "${INSIGHTS_REQUIREMENTS_PATH}:/usr/local/airflow/requirements/insights_requirements.txt"
+            - "${INSIGHTS_DBT_REQUIREMENTS_PATH}:/usr/local/airflow/requirements/dbt_requirements.txt"
             - "${PWD}/plugins:/usr/local/airflow/plugins"
             - "${PWD}/requirements:/usr/local/airflow/requirements"
             - "${PWD}/startup_script:/usr/local/airflow/startup"
