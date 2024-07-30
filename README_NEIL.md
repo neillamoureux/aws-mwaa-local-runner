@@ -1,0 +1,41 @@
+# About
+
+This is a fork of the `aws-mwaa-local-runner` repo provided by Amazon
+to mimic their NMWAA environment.
+
+It has been modified to work with Bazaarvoice's `insights-dashboard` repo.
+This is done by
+1. Mounting volumes via the
+[docker/docker-copmpose-local.yml](docker-compose-local.yml)
+file,
+to the `insights-dashboard` repo's dags, requirements, etc.
+2.  Modifying the
+[entrypoint.sh](docker/script/entrypoint.sh)
+script to install the additional requirements.
+3.  Modifying `PYTHONPATH` to enable loading folders as packages in the mounted dags folder
+
+
+## Setup
+Note after setup, there may be dags with import error.
+Fix it if you need that dag.
+
+### `aws-mwaa-local-runner` repo change
+- Copy [docker/.env_template](./docker/.env_template) to `docker/.env`
+- Update the first line to the absolute path to your copy of the `insights-dashboards` repo
+```
+INSIGHTS_REPO_ROOT_PATH="/path/to/the/repo/insights-dashboards"
+```
+
+### `insights-dashboard` repo changes
+You need to change a files in the `insights-dashboard` repo.
+Don't commit it to a shared branch!
+
+- Modify the dbt paths in `data/dags/utils/vars.py` to work with this repo:
+```python
+DBT_EXECUTABLE_PATH = f"{AIRFLOW_HOME}/.local/bin/dbt"
+# DBT_EXECUTABLE_PATH = f"{AIRFLOW_HOME}/dbt_venv/bin/dbt"
+DBT_PROJECT_DIR = f"{AIRFLOW_HOME}/dags/insights/dbt/"
+# DBT_PROJECT_DIR = f"{AIRFLOW_HOME}/dags/dbt/"
+```
+
+
