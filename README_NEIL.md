@@ -1,12 +1,12 @@
 # About
 
 This is a fork of the `aws-mwaa-local-runner` repo provided by Amazon
-to mimic their NMWAA environment.
+to mimic their MWAA environment.
 
 It has been modified to work with Bazaarvoice's `insights-dashboard` repo.
 This is done by
 1. Mounting volumes via the
-[docker/docker-copmpose-local.yml](docker-compose-local.yml)
+[docker/docker-compose-local.yml](docker-compose-local.yml)
 file,
 to the `insights-dashboard` repo's dags, requirements, etc.
 2.  Modifying the
@@ -27,7 +27,7 @@ INSIGHTS_REPO_ROOT_PATH="/path/to/the/repo/insights-dashboards"
 ```
 
 ### `insights-dashboard` repo changes
-You need to change a files in the `insights-dashboard` repo.
+You need to change a file in the `insights-dashboard` repo.
 Don't commit it to a shared branch!
 
 - Modify the dbt paths in `data/dags/utils/vars.py` to work with this repo:
