@@ -6,7 +6,7 @@ to mimic their MWAA environment.
 It has been modified to work with Bazaarvoice's `insights-dashboard` repo.
 This is done by
 1. Mounting volumes via the
-[docker/docker-compose-local.yml](docker-compose-local.yml)
+[docker/docker-compose-local.yml](docker/docker-compose-local.yml)
 file,
 to the `insights-dashboard` repo's dags, requirements, etc.
 2.  Modifying the
@@ -37,6 +37,16 @@ DBT_EXECUTABLE_PATH = f"{AIRFLOW_HOME}/.local/bin/dbt"
 DBT_PROJECT_DIR = f"{AIRFLOW_HOME}/dags/insights/dbt/"
 # DBT_PROJECT_DIR = f"{AIRFLOW_HOME}/dags/dbt/"
 ```
+- You can tell git to ignore changes to this file in the `insights-dashboards` repo via: 
+    ```
+    git update-index --assume-unchanged data/dags/utils/vars.py
+    ```
+- To revert this:
+    ```
+    git update-index --no-assume-unchanged data/dags/utils/vars.py
+    ```
+
+
 
 ### Airflow variables, connections, and pools.
 You will need to set some of these up via your local Airflow.
