@@ -27,6 +27,7 @@ services:
                 max-file: "3"
         volumes:
             - "${PWD}/dags:/usr/local/airflow/dags"
+            - "${HOME}/Library/CloudStorage/OneDrive-Bazaarvoice/repo_sides/insights-dashboards/data/dags/dbt/reports/neil:/usr/local/airflow/dags/insights/dbt/reports/neil"
             - "${INSIGHTS_DAG_PATH}:/usr/local/airflow/dags/insights"
             - "${INSIGHTS_REQUIREMENTS_PATH}:/usr/local/airflow/requirements/insights_requirements.txt"
             - "${INSIGHTS_DBT_REQUIREMENTS_PATH}:/usr/local/airflow/requirements/dbt_requirements.txt"
